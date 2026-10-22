@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Эрдэмбилэг 🤍</title>
+<style>
+:root{color-scheme:light;--accent:#e85d8f}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at top,#fff0f5 0%,#fff 52%,#f4f1f5 100%);color:#29242a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.card{width:min(100%,430px);min-height:570px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:34px 24px;text-align:center;border:1px solid #f0dbe4;border-radius:25px;background:#ffffffed;box-shadow:0 22px 70px #bcaab51c,0 0 45px #e85d8f0d}
+.eyebrow{color:#d44e80;letter-spacing:.2em;font-size:11px}
+h1{margin:17px 0 22px;font:italic 700 clamp(36px,9vw,50px)/1.1 Georgia,serif;overflow-wrap:anywhere}
+h1 span{color:var(--accent)}
+.message{font:500 23px/1.5 Georgia,serif;margin:0 auto 15px;max-width:330px}
+.sub{color:#81747c;font:italic 15px/1.6 Georgia,serif;margin:0 0 32px}
+.buttons{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;width:100%}
+button{font-family:inherit;font-size:15px;font-weight:650;border:0;border-radius:999px;padding:14px 23px;cursor:pointer;transition:transform .18s}
+button:active{transform:scale(.96)}
+.yes{background:var(--accent);color:white;box-shadow:0 8px 24px #e85d8f35}
+.no{background:#fff;color:#6e6269;border:1px solid #e6dce1}
+.hint{margin-top:34px;color:#d44e80;font-size:13px}
+.result{display:none;margin-top:24px;padding:18px 14px;width:100%;border:1px solid #f0cbd9;border-radius:16px;background:#fff5f8;line-height:1.7;font-size:17px}
+.result.show{display:block;animation:pop .35s ease-out}
+.heart{position:absolute;pointer-events:none;bottom:-35px;animation:float 4s ease-in forwards;opacity:0}
+@keyframes float{10%{opacity:.95}100%{transform:translateY(-720px) rotate(25deg);opacity:0}}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+@media(max-height:700px){.card{min-height:0;padding:28px 20px}.message{font-size:20px}}
+</style>
+</head>
+<body>
+<main class="card" id="card">
+  <div class="eyebrow">НЭГ ЖИЖИГ АСУУЛТ 💌</div>
+  <h1>Эрдэмбилэг<span>,</span></h1>
+  <p class="message">Хайртай шүү ац минь. ❤️</p>
+  <p class="sub">Чамд хэлэхийг хүссэн зүйл надад бий.</p>
+  <div class="buttons">
+    <button class="yes" id="yes">♥ Тийм</button>
+    <button class="no" id="no">Үгүй</button>
+  </div>
+  <div class="hint">Хариултаа сонгоорой ↓</div>
+  <div class="result" id="result" role="status" aria-live="polite"></div>
+</main>
+<script>
+const result=document.getElementById('result');
+const card=document.getElementById('card');
+function hearts(){
+  for(let i=0;i<35;i++){
+    const h=document.createElement('span');
+    h.className='heart';
+    h.textContent=['❤️','🤍','💕','♡','✨'][i%5];
+    h.style.left=(3+Math.random()*94)+'%';
+    h.style.animationDelay=(Math.random()*1.8)+'s';
+    h.style.fontSize=(18+Math.random()*20)+'px';
+    card.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+document.getElementById('yes').addEventListener('click',()=>{
+  result.innerHTML='🤍 Хайртай шүү, Эрдэмбилэг ээ! 🥹<br><br>Чи миний хувьд онцгой хүн шүү. Үргэлж инээмсэглэж яваарай. 💗<br><br>Нэг тэврэлт явууллаа! 🫶';
+  result.classList.add('show');
+  hearts();
+});
+document.getElementById('no').addEventListener('click',()=>{
+  result.textContent='Зүгээр ээ, Эрдэмбилэг ээ. 🤍 Хариултыг чинь хүндэтгэнэ. Боломжтой үедээ ярилцаж болно шүү.';
+  result.classList.add('show');
+});
+</script>
+</body>
+</html>
